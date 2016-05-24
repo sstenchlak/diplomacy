@@ -1,0 +1,110 @@
+/* map full page */
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+svg#map {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	background: #fbfbfb;
+}
+
+#mfl path {
+	transition: all .3s ease;
+}
+
+#mfl path:hover {
+	opacity: .8;
+}
+
+/* page */
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #737373;
+}
+
+h1, h2, h3, h4, h5, h6, b {
+	color: #424242;
+}
+
+/* panel */
+.pan {
+	position: fixed;
+	margin: 10px;
+
+	padding: 5px 10px;
+
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	background: white;
+}
+
+.pan hr {
+	border: none;
+	height: 1px;
+	background-color: #e8e8e8;
+}
+
+/**
+ * Styly pro mapu
+ */
+
+/* Šipky */
+#ma path {
+	stroke-width: 3;
+	fill: none;
+	stroke-dasharray: 10,15;
+	stroke-linecap: round;
+}
+
+/* Map arrow land attack */
+#ma .la polygon { fill: #CE3030; }
+#ma .la path { stroke: #CE3030; }
+/* Map arrow land support */
+#ma .ls polygon { fill: ; }
+#ma .ls path { stroke: ; }
+/* Map arrow sea attack */
+#ma .sa polygon { fill: ; }
+#ma .sa path { stroke: ; }
+/* Map arrow sea support */
+#ma .ss polygon { fill: ; }
+#ma .ss path { stroke: ; }
+/* Map arrow convoy */
+#ma .c polygon { fill: ; }
+#ma .c path { stroke: ; }
+
+#mt text {
+	y: 20;
+}
+
+/* Popisky */
+#mt rect {
+	fill: #a4cfe2;
+    height: 21px;
+    y: -8;
+}
+
+#mt image {
+	width: 40px;
+	height: 40px;
+}
+
+/* Map tags header image */
+#mt .hi {
+	y: -18px;
+}
+
+/* Map tags additional image */
+#mt .ai {
+	x: -20px;
+	y: 15px;
+}
