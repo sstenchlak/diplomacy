@@ -9,7 +9,7 @@ var mapControl = function () {
 	var map = $('#map');
 
 	// Načte další třídu
-	var kkt = MAPAPKA;
+	var kkt = MapMove;
 
 	// Po kliknutí na mapu
 	map.on('mousedown touchstart', function (e) {
