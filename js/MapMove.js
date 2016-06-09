@@ -139,6 +139,7 @@ MapMove = new function () {
 	this.mouseMove = function (dx, dy) {
 		properties.x += dx;
 		properties.y += dy;
+		this.changed();
 		set();
 	}
 
@@ -158,6 +159,13 @@ MapMove = new function () {
 		// Kam ukazuje myška?
 		var toX = (x - properties.x) / properties.scale;
 		var toY = (y - properties.y) / properties.scale;
+
+		// Oznámí, že se mapa změnila (i když se bude měnit postupně)
+		this.changed({
+			scale: scaleTo,
+			x: toX,
+			y: toY
+		});
 
 		// Objekt scale se bude měnit z aktuální hodnoty na hodnotu {now:scaleTo}, tedy na konci bude now==to.
 		$(properties).animate({scale:scaleTo},{
@@ -179,6 +187,26 @@ MapMove = new function () {
 	 */
 	this.redraw = function () {
 		set(true);
+	}
+
+	/**
+	 * Voláno, když se změní mapa
+	 * @param  {obj/null} otherProperties Mohou se přidat jiné properties
+	 */
+	this.changed = function (otherProperties = null) {
+		// Properties
+			var prop = (otherProperties) ? otherProperties : properties;
+
+		// Souřadnice levého horního rohu
+			var x1 = prop.x;
+			var y1 = prop.y;
+
+		// Souřadnice pravého dolního rohu
+			var x2 = prop.x + $('#mm').width() / prop.scale;
+			var y2 = prop.y + $('#mm').height() / prop.scale;
+
+		// Zavolá se MapLoader na načtení nového kusu mapy
+			MapLoader.viewChanged(x1, y1, x2, y2);
 	}
 
 };

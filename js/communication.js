@@ -38,7 +38,7 @@ var Communication = new function ()
 	/**
 	 * Odešle příkaz na server
 	 * @param  {string}   command  Název příkazu pro snažší zpracování na straně serveru
-	 * @param  {array}    data     Odesílaná data ve formě pole
+	 * @param  {array/object}    data     Odesílaná data ve formě libovolného dat. typu
 	 * @param  {Boolean}  now      Zda se má odeslat ihned
 	 * @param  {Function} callback
 	 */
