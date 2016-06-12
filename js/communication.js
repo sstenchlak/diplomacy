@@ -48,7 +48,7 @@ var Communication = new function ()
 			query.push([command, data, callback]);
 		// Ostestování, zda se má ihned odeslat
 			if (now)
-				ToServer();
+				this.ToServer();
 
 		// Aktualizace časovače
 			updateTimer();
@@ -79,10 +79,13 @@ var Communication = new function ()
 				data.push([ QUERY[index][0], QUERY[index][1] ])
 			}
 
+/************************************************************************/
 		// Zpracování dat
+var orig = data;
 			data = JSON.stringify(data);
 			data = b64EncodeUnicode(data);
 
+/**
 		$.ajax({
 			type: "POST",
 			url: URL,
@@ -90,6 +93,11 @@ var Communication = new function ()
 			success: FromServer.bind(null, QUERY),
 			error: SendError.bind(null, QUERY)
 		});
+**/
+console.info("Simuluji odesílání dat na server. (" + data.length + " B)", orig);
+celkovaVelikost += data.length;
+/************************************************************************/
+
 	}
 
 	/**

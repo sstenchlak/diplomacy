@@ -163,8 +163,8 @@ MapMove = new function () {
 		// Oznámí, že se mapa změnila (i když se bude měnit postupně)
 		this.changed({
 			scale: scaleTo,
-			x: toX,
-			y: toY
+			x: x-toX*scaleTo,
+			y: y-toY*scaleTo
 		});
 
 		// Objekt scale se bude měnit z aktuální hodnoty na hodnotu {now:scaleTo}, tedy na konci bude now==to.
@@ -198,12 +198,12 @@ MapMove = new function () {
 			var prop = (otherProperties) ? otherProperties : properties;
 
 		// Souřadnice levého horního rohu
-			var x1 = prop.x;
-			var y1 = prop.y;
+			var x1 = -prop.x / prop.scale;
+			var y1 = -prop.y / prop.scale;
 
 		// Souřadnice pravého dolního rohu
-			var x2 = prop.x + $('#mm').width() / prop.scale;
-			var y2 = prop.y + $('#mm').height() / prop.scale;
+			var x2 = (-prop.x + $('#map').width()) / prop.scale;
+			var y2 = (-prop.y + $('#map').height()) / prop.scale;
 
 		// Zavolá se MapLoader na načtení nového kusu mapy
 			MapLoader.viewChanged(x1, y1, x2, y2);

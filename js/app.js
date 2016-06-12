@@ -3,6 +3,8 @@
  */
 
 $(function (){
+	// Ukazatel přenesených dat
+	celkovaVelikost = 0;
 	// Inicializace ovládání mapy
 	mapControl();
 });
