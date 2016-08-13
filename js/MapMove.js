@@ -182,6 +182,41 @@ MapMove = new function () {
 	}
 
 	/**
+	 * Provede posun mapy a naškálování podle pohybů prstů na mobilním zařízení
+	 * @param {number} dx Posunutí středu "prstů" (v pixelech)
+	 * @param {number} dy Posunutí středu "prstů" (v pixelech)
+	 * @param {number} x  Střed prstů (v pixelech) - místo, kam směřuje přiblížení
+	 * @param {number} y  Střed prstů (v pixelech) - místo, kam směřuje přiblížení
+	 * @param {number} w  Změna přiblížení (1 - nic; <1 - oddálení; >1 - přiblížení)
+	 */
+	this.moveAndScale = function (dx, dy, x, y, w) {
+		// Nejprve jednoduše posune mapu o dané souřadnice
+		properties.x += dx;
+		properties.y += dy;
+
+		// Pro jistotu zastaví animaci přibližování
+		// @see this.wheelMove
+		$(properties).stop();
+
+		// Nastaví novou škálu na...
+		var scaleTo = properties.scale * w;
+
+		// Ověření limit
+		if (scaleTo > SCALE_LIMITS[1]) scaleTo = SCALE_LIMITS[1];
+		if (scaleTo < SCALE_LIMITS[0]) scaleTo = SCALE_LIMITS[0];
+
+		// Nové souřadnice
+		properties.x = x - (x - properties.x) * scaleTo/properties.scale;
+		properties.y = y - (y - properties.y) * scaleTo/properties.scale;
+		properties.scale = scaleTo;
+
+		// Uložení
+		this.changed();
+		set();
+	}
+
+
+	/**
 	 * Updatne vykreslení celé mapy.
 	 * Pro účely develop
 	 */
